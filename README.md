@@ -55,7 +55,7 @@ class TStruct1(sbc.LEFormat):
         ('a', sbc.c_uint32),
         ('b', sbc.c_int16),
         ('c', sbc.c_uint8),
-    ]____
+    ]
 ```
 
 C结构体转换为二进制字节流使用方法encode,二进制字节流转换为C语言结构体使用方法decode.API:
@@ -68,8 +68,14 @@ def encode(self) -> bytearray
 
 """
 二进制转换成C语言结构体
+:return: 返回True表示转换成功,False表示转换失败
 """
-def decode(self, data: bytearray)
+def decode(self, data: bytearray) -> bool
+
+"""
+读取结构体字节数
+"""
+def size(self) -> int
 ```
 
 
@@ -152,7 +158,15 @@ class _UnitTest(unittest.TestCase):
         self.assertEqual(ts.b, 0x2345)
         self.assertEqual(ts.c, 0x67)
 
-    def test_case5(self):
+        def test_case5(self):
+        """
+        测试小端4字节对齐,二进制转换为C语言结构体
+        """
+        ts = TStruct2()
+        err = ts.decode(bytearray([0x78, 0x56, 0x34]))
+        self.assertEqual(err, False)
+
+    def test_case6(self):
         """
         测试大端1字节对齐,C语言结构体转换为二进制
         """

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 filepath = 'README.md'
 setup(
         name="sbc",
-        version="1.1",
+        version="1.2",
         description="struct convert binary",
         long_description=open(filepath, encoding='utf-8').read(),
         long_description_content_type="text/markdown",

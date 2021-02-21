@@ -15,11 +15,15 @@ def _encode(self) -> bytearray:
     return bytearray(string_at(addressof(self), sizeof(self)))
 
 
-def _decode(self, data: bytearray):
+def _decode(self, data: bytearray) -> bool:
     """
     二进制转换成C语言结构体
+    :return: 返回True表示转换成功,False表示转换失败
     """
+    if len(data) != sizeof(self):
+        return False
     memmove(addressof(self), bytes(data), sizeof(self))
+    return True
 
 
 class LEFormat(LittleEndianStructure):
@@ -28,8 +32,11 @@ class LEFormat(LittleEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)
 
 
 class BEFormat(BigEndianStructure):
@@ -38,8 +45,11 @@ class BEFormat(BigEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)
 
 
 class LEFormatAlign4(LittleEndianStructure):
@@ -48,8 +58,11 @@ class LEFormatAlign4(LittleEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)
 
 
 class BEFormatAlign4(BigEndianStructure):
@@ -58,8 +71,11 @@ class BEFormatAlign4(BigEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)
 
 
 class LEFormatAlign8(LittleEndianStructure):
@@ -68,8 +84,11 @@ class LEFormatAlign8(LittleEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)
 
 
 class BEFormatAlign8(BigEndianStructure):
@@ -78,5 +97,8 @@ class BEFormatAlign8(BigEndianStructure):
     def encode(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray):
-        _decode(self, data)
+    def decode(self, data: bytearray) -> bool:
+        return _decode(self, data)
+
+    def size(self) -> int:
+        return sizeof(self)

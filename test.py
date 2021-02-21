@@ -77,6 +77,14 @@ class _UnitTest(unittest.TestCase):
 
     def test_case5(self):
         """
+        测试小端4字节对齐,二进制转换为C语言结构体
+        """
+        ts = TStruct2()
+        err = ts.decode(bytearray([0x78, 0x56, 0x34]))
+        self.assertEqual(err, False)
+
+    def test_case6(self):
+        """
         测试大端1字节对齐,C语言结构体转换为二进制
         """
         ts = TStruct3()
