@@ -29,10 +29,10 @@ def _decode(self, data: bytearray) -> bool:
 class LEFormat(LittleEndianStructure):
     _pack_ = 1
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:
@@ -42,10 +42,10 @@ class LEFormat(LittleEndianStructure):
 class BEFormat(BigEndianStructure):
     _pack_ = 1
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:
@@ -55,10 +55,10 @@ class BEFormat(BigEndianStructure):
 class LEFormatAlign4(LittleEndianStructure):
     _pack_ = 4
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:
@@ -68,10 +68,10 @@ class LEFormatAlign4(LittleEndianStructure):
 class BEFormatAlign4(BigEndianStructure):
     _pack_ = 4
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:
@@ -81,10 +81,10 @@ class BEFormatAlign4(BigEndianStructure):
 class LEFormatAlign8(LittleEndianStructure):
     _pack_ = 8
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:
@@ -94,10 +94,10 @@ class LEFormatAlign8(LittleEndianStructure):
 class BEFormatAlign8(BigEndianStructure):
     _pack_ = 8
 
-    def encode(self) -> bytearray:
+    def struct_to_bytearray(self) -> bytearray:
         return _encode(self)
 
-    def decode(self, data: bytearray) -> bool:
+    def bytearray_to_struct(self, data: bytearray) -> bool:
         return _decode(self, data)
 
     def size(self) -> int:

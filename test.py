@@ -39,7 +39,7 @@ class _UnitTest(unittest.TestCase):
         ts.a = 0x12345678
         ts.b = 0x2345
         ts.c = 0x67
-        data = ts.encode()
+        data = ts.struct_to_bytearray()
         self.assertEqual(len(data), 7)
         self.assertEqual(data, bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67]))
 
@@ -48,7 +48,7 @@ class _UnitTest(unittest.TestCase):
         测试小端1字节对齐,二进制转换为C语言结构体
         """
         ts = TStruct1()
-        ts.decode(bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67]))
+        ts.bytearray_to_struct(bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67]))
         self.assertEqual(ts.a, 0x12345678)
         self.assertEqual(ts.b, 0x2345)
         self.assertEqual(ts.c, 0x67)
@@ -61,7 +61,7 @@ class _UnitTest(unittest.TestCase):
         ts.a = 0x12345678
         ts.b = 0x2345
         ts.c = 0x67
-        data = ts.encode()
+        data = ts.struct_to_bytearray()
         self.assertEqual(len(data), 8)
         self.assertEqual(data, bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67, 0x00]))
 
@@ -70,7 +70,7 @@ class _UnitTest(unittest.TestCase):
         测试小端4字节对齐,二进制转换为C语言结构体
         """
         ts = TStruct2()
-        ts.decode(bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67, 0x00]))
+        ts.bytearray_to_struct(bytearray([0x78, 0x56, 0x34, 0x12, 0x45, 0x23, 0x67, 0x00]))
         self.assertEqual(ts.a, 0x12345678)
         self.assertEqual(ts.b, 0x2345)
         self.assertEqual(ts.c, 0x67)
@@ -80,7 +80,7 @@ class _UnitTest(unittest.TestCase):
         测试小端4字节对齐,二进制转换为C语言结构体
         """
         ts = TStruct2()
-        err = ts.decode(bytearray([0x78, 0x56, 0x34]))
+        err = ts.bytearray_to_struct(bytearray([0x78, 0x56, 0x34]))
         self.assertEqual(err, False)
 
     def test_case6(self):
@@ -92,7 +92,7 @@ class _UnitTest(unittest.TestCase):
         for i in range(5):
             ts.b[i] = i
         ts.c = 0x12345678
-        data = ts.encode()
+        data = ts.struct_to_bytearray()
         self.assertEqual(len(data), 11)
         self.assertEqual(data, bytearray([0x23, 0x45, 0x00, 0x01, 0x02, 0x03, 0x04, 0x12, 0x34, 0x56, 0x78]))
 
